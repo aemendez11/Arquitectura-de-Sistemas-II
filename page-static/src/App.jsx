@@ -47,7 +47,7 @@ function App() {
       </main>
 
       <footer className="footer">
-        <p>Hecho por Alexander Méndez • 2026</p>
+        <p>Hecho  por Alexander Méndez • 2026</p>
       </footer>
     </div>
   );
