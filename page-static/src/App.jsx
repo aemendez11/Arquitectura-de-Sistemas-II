@@ -11,6 +11,8 @@ function App() {
             Aplicación estática creada con React + Vite, dockerizada y lista para
             despliegue con GitHub Actions.
           </p>
+          <h1>Assignment 03 - Deployed OK</h1>
+          <p>Build: 2026-02-22 18:45 (UTC-6)</p>
         </section>
 
         <section className="cards">
