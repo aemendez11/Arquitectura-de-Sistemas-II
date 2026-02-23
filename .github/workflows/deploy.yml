@@ -13,6 +13,9 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
+    env:
+      VERSION_LABEL: deploy-${{ github.sha }}-${{ github.run_number }}-${{ github.run_attempt }}
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -50,13 +53,13 @@ jobs:
 
           cat > Dockerrun.aws.json <<EOF
           {
-            "AWSEBDockerrunVersion": "1",
+            "AWSEBDockerrunVersion": 1,
             "Image": {
               "Name": "$IMAGE_URI",
               "Update": "true"
             },
             "Ports": [
-              { "ContainerPort": "80" }
+              { "ContainerPort": 80 }
             ]
           }
           EOF
@@ -72,7 +75,7 @@ jobs:
           AWS_REGION: ${{ secrets.AWS_REGION }}
         run: |
           set -euo pipefail
-          aws s3 cp deploy.zip "s3://$EB_S3_BUCKET/deploy-${GITHUB_SHA}.zip" --region "$AWS_REGION"
+          aws s3 cp deploy.zip "s3://$EB_S3_BUCKET/$VERSION_LABEL.zip" --region "$AWS_REGION"
 
       - name: Create new Elastic Beanstalk application version
         env:
@@ -83,8 +86,8 @@ jobs:
           set -euo pipefail
           aws elasticbeanstalk create-application-version \
             --application-name "$EB_APP_NAME" \
-            --version-label "deploy-${GITHUB_SHA}" \
-            --source-bundle S3Bucket="$EB_S3_BUCKET",S3Key="deploy-${GITHUB_SHA}.zip" \
+            --version-label "$VERSION_LABEL" \
+            --source-bundle S3Bucket="$EB_S3_BUCKET",S3Key="$VERSION_LABEL.zip" \
             --region "$AWS_REGION"
 
       - name: Update Elastic Beanstalk environment
@@ -95,5 +98,5 @@ jobs:
           set -euo pipefail
           aws elasticbeanstalk update-environment \
             --environment-name "$EB_ENV_NAME" \
-            --version-label "deploy-${GITHUB_SHA}" \
+            --version-label "$VERSION_LABEL" \
             --region "$AWS_REGION"
