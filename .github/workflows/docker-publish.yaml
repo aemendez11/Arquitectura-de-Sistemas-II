@@ -32,7 +32,7 @@ jobs:
           images: ${{ secrets.DOCKERHUB_USERNAME }}/assignment-04
           tags: |
             type=raw,value=latest
-            type=sha
+            type=sha, format=long
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
