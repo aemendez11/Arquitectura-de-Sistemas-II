@@ -1,0 +1,83 @@
+// data.js
+const autores = [
+  {
+    id: "1",
+    nombre: "Gabriel García Márquez",
+    nacionalidad: "Colombiana",
+    fechaNacimiento: "1927-03-06",
+    vivo: false,
+    email: "ggmarquez@biblioteca.com",
+    librosPublicados: 15,
+  },
+  {
+    id: "2",
+    nombre: "J.K. Rowling",
+    nacionalidad: "Británica",
+    fechaNacimiento: "1965-07-31",
+    vivo: true,
+    email: "jkrowling@biblioteca.com",
+    librosPublicados: 14,
+  },
+  {
+    id: "3",
+    nombre: "Miguel de Cervantes",
+    nacionalidad: "Española",
+    fechaNacimiento: "1547-09-29",
+    vivo: false,
+    email: "cervantes@biblioteca.com",
+    librosPublicados: 8,
+  },
+];
+
+const libros = [
+  {
+    id: "1",
+    titulo: "Cien años de soledad",
+    autorId: "1",
+    genero: "Realismo mágico",
+    anio: 1967,
+    paginas: 471,
+    disponible: true,
+    idioma: "Español",
+    isbn: "978-0-06-088328-7",
+    calificacion: 4.9,
+  },
+  {
+    id: "2",
+    titulo: "Harry Potter y la piedra filosofal",
+    autorId: "2",
+    genero: "Fantasía",
+    anio: 1997,
+    paginas: 309,
+    disponible: true,
+    idioma: "Inglés",
+    isbn: "978-0-7475-3269-9",
+    calificacion: 4.8,
+  },
+  {
+    id: "3",
+    titulo: "El amor en los tiempos del cólera",
+    autorId: "1",
+    genero: "Romance",
+    anio: 1985,
+    paginas: 348,
+    disponible: false,
+    idioma: "Español",
+    isbn: "978-0-14-303943-3",
+    calificacion: 4.7,
+  },
+  {
+    id: "4",
+    titulo: "Don Quijote de la Mancha",
+    autorId: "3",
+    genero: "Novela de caballerías",
+    anio: 1605,
+    paginas: 863,
+    disponible: true,
+    idioma: "Español",
+    isbn: "978-84-670-5124-4",
+    calificacion: 4.6,
+  },
+];
+
+module.exports = { autores, libros };
