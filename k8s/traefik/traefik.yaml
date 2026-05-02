@@ -76,6 +76,13 @@ spec:
               containerPort: 80
             - name: dashboard
               containerPort: 8080
+          args:
+            - --api.insecure=true
+            - --providers.kubernetesingress
+            - --providers.kubernetescrd
+            - --entrypoints.web.address=:80
+            - --log.level=DEBUG
+
 
 ---
 apiVersion: v1
